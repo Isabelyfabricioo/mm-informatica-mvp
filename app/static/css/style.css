@@ -1,0 +1,602 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #263445;
+}
+
+/* CABEÇALHO */
+.cabecalho {
+    background: #142b49;
+    color: white;
+    min-height: 85px;
+    padding: 20px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo-icone {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.navegacao {
+    display: flex;
+    gap: 25px;
+}
+
+.navegacao a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navegacao a:hover {
+    color: #a9c9f0;
+}
+
+.identificacao {
+    font-size: 13px;
+    color: #d5dfeb;
+}
+
+/* CONTEÚDO */
+.container {
+    max-width: 1150px;
+    margin: 50px auto;
+    padding: 0 25px;
+    min-height: 65vh;
+}
+
+.boas-vindas {
+    margin-bottom: 40px;
+}
+
+.boas-vindas h1 {
+    color: #142b49;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.boas-vindas p {
+    color: #697586;
+    font-size: 15px;
+}
+
+/* MENU INICIAL */
+.opcoes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e1e7ef;
+    text-decoration: none;
+    color: #263445;
+    transition: 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icone {
+    background: #e8f0fb;
+    color: #2463a6;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #142b49;
+}
+
+.card p {
+    font-size: 14px;
+    color: #697586;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card span {
+    color: #2463a6;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* FORMULÁRIOS GERAIS */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #34445a;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5dce5;
+    border-radius: 7px;
+    font-size: 14px;
+    background: white;
+    color: #263445;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2463a6;
+}
+
+button {
+    background: #2463a6;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #194b80;
+}
+
+/* CARTÃO DE CONTEÚDO */
+.card-conteudo {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e1e7ef;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-conteudo h2,
+.lista-negociacoes h2 {
+    color: #142b49;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.descricao-secao {
+    color: #697586;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+/* PESQUISA DE PRODUTOS */
+.form-pesquisa {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) auto auto;
+    align-items: end;
+    gap: 10px;
+}
+
+.form-pesquisa label {
+    grid-column: 1 / -1;
+}
+
+.form-pesquisa input {
+    min-width: 0;
+}
+
+.form-pesquisa button {
+    white-space: nowrap;
+}
+
+/* BOTÃO LIMPAR PESQUISA */
+.botao-limpar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border: 1px solid #d5dce5;
+    border-radius: 7px;
+    color: #34445a;
+    background: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.botao-limpar:hover {
+    background: #edf2f8;
+}
+
+/* LISTA DE PRODUTOS */
+.lista-produtos {
+    margin-top: 35px;
+}
+
+.lista-produtos h2 {
+    color: #142b49;
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+.produto-item {
+    background: white;
+    border: 1px solid #e1e7ef;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.produto-item h3 {
+    color: #142b49;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.produto-item p {
+    color: #697586;
+    font-size: 14px;
+    margin-bottom: 7px;
+    line-height: 1.5;
+}
+
+.botao-editar {
+    background: #2463a6;
+    color: white;
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.botao-editar:hover {
+    background: #194b80;
+}
+
+.sem-resultados {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    color: #697586;
+}
+
+.acoes-pagina {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.acoes-pagina a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* INDICADORES DE NEGOCIAÇÕES */
+.indicadores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.indicador {
+    background: white;
+    border: 1px solid #e1e7ef;
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.indicador span {
+    color: #697586;
+    font-size: 13px;
+}
+
+.indicador strong {
+    color: #142b49;
+    font-size: 28px;
+}
+
+/* CADASTRO DE NEGOCIAÇÕES */
+.form-negociacao {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-negociacao label {
+    display: block;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.form-negociacao input,
+.form-negociacao select {
+    width: 100%;
+}
+
+.form-negociacao button {
+    align-self: flex-start;
+    margin-top: 12px;
+}
+
+/* TABELA DE NEGOCIAÇÕES */
+.lista-negociacoes {
+    margin-top: 35px;
+}
+
+.tabela-negociacoes {
+    background: white;
+    border: 1px solid #e1e7ef;
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+.tabela-negociacoes table {
+    min-width: 750px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 13px;
+    border-bottom: 1px solid #e5eaf0;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background: #edf2f8;
+    color: #142b49;
+}
+
+.modelo-produto {
+    display: block;
+    color: #8793a2;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.form-status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-status select {
+    min-width: 125px;
+}
+
+.form-status button {
+    padding: 10px 13px;
+}
+
+/* STATUS DAS NEGOCIAÇÕES */
+.status {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.status-novo {
+    background: #e8f0fb;
+    color: #2463a6;
+}
+
+.status-em-negociação {
+    background: #fff2d9;
+    color: #95620c;
+}
+
+.status-concluído {
+    background: #e5f5eb;
+    color: #216b3b;
+}
+
+.status-cancelado {
+    background: #fdeaea;
+    color: #a52b2b;
+}
+
+/* MENSAGENS */
+.alerta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    padding: 12px 16px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.alerta span {
+    flex: 1;
+    text-align: left;
+}
+
+.alerta-success {
+    background: #e5f5eb;
+    color: #216b3b;
+}
+
+.alerta-error {
+    background: #fdeaea;
+    color: #a52b2b;
+}
+
+.fechar-alerta {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: 0 5px;
+    margin-left: auto;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.fechar-alerta:hover {
+    background: transparent;
+    opacity: 0.6;
+}
+
+/* LINKS */
+a {
+    color: #2463a6;
+}
+
+.link-voltar {
+    display: inline-block;
+    margin-top: 22px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* RODAPÉ */
+.rodape {
+    background: #142b49;
+    color: #d5dfeb;
+    text-align: center;
+    padding: 22px;
+    font-size: 13px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .cabecalho {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navegacao {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .opcoes {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        margin: 30px auto;
+    }
+
+    .indicadores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-pesquisa {
+        grid-template-columns: 1fr;
+    }
+
+    .produto-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .botao-editar {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .indicadores {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+.acoes-produto {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.acoes-produto a,
+.acoes-produto form {
+    flex: 1;
+}
+
+.acoes-produto .botao-editar,
+.acoes-produto .botao-excluir {
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.acoes-produto form button {
+    height: 100%;
+}

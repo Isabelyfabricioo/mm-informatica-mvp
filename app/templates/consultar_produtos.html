@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="boas-vindas">
+    <h1>Consultar produtos</h1>
+    <p>Visualize, pesquise e edite os produtos cadastrados.</p>
+</section>
+
+<div class="card-conteudo">
+
+    {% include "_mensagens.html" %}
+
+    <form method="GET"
+          action="{{ url_for('consultar_produtos') }}"
+          class="form-pesquisa">
+
+        <label for="busca">Pesquisar produto</label>
+
+        <input
+            type="text"
+            id="busca"
+            name="busca"
+            placeholder="Digite o nome ou modelo do produto"
+            value="{{ termo }}"
+        >
+
+        <button type="submit">Pesquisar</button>
+
+        <a href="{{ url_for('consultar_produtos') }}"
+           class="botao-limpar">
+            Limpar pesquisa
+        </a>
+
+    </form>
+
+</div>
+
+<section class="lista-produtos">
+
+    <h2>Produtos cadastrados</h2>
+
+    {% if produtos %}
+
+        {% for produto in produtos %}
+
+            <div class="produto-item">
+
+                <div>
+                    <h3>{{ produto['nome'] }}</h3>
+                    <p><strong>Modelo:</strong> {{ produto['modelo'] }}</p>
+                    <p><strong>Características:</strong> {{ produto['caracteristicas'] }}</p>
+                    <p><strong>Preço:</strong> R$ {{ "%.2f"|format(produto['preco']) }}</p>
+                    <p><strong>Disponibilidade:</strong> {{ produto['disponibilidade'] }}</p>
+                </div>
+
+                <div class="acoes-produto">
+
+                    <a class="botao-editar"
+                       href="{{ url_for('editar_produto', produto_id=produto['id']) }}">
+                        Editar produto
+                    </a>
+
+                    <form method="POST"
+                          action="{{ url_for('excluir_produto_rota', produto_id=produto['id']) }}"
+                          onsubmit="return confirm('Tem certeza de que deseja excluir este produto?');">
+
+                        <button type="submit" class="botao-excluir">
+                            Excluir produto
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p class="sem-resultados">Nenhum produto encontrado.</p>
+
+    {% endif %}
+
+</section>
+
+<div class="acoes-pagina">
+    <a href="{{ url_for('cadastrar_produto') }}">+ Cadastrar outro produto</a>
+    <a href="{{ url_for('inicio') }}">← Voltar ao menu</a>
+</div>
+
+{% endblock %}

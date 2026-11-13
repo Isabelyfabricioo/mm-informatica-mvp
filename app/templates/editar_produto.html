@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar produto - MM Informática</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="logo">MM Informática</div>
+        <span class="identificacao">Sistema de gerenciamento</span>
+    </header>
+
+    <main class="container">
+
+        <section class="boas-vindas">
+            <h1>Editar produto</h1>
+            <p>Altere as informações do produto cadastrado.</p>
+        </section>
+
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensagem in mensagens %}
+                <div class="alerta alerta-{{ categoria }}">
+                    {{ mensagem }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        <div class="card">
+            <form method="POST">
+
+                <label for="nome">Nome do produto</label>
+                <input type="text" id="nome" name="nome"
+                       value="{{ produto['nome'] }}" required>
+
+                <label for="modelo">Modelo</label>
+                <input type="text" id="modelo" name="modelo"
+                       value="{{ produto['modelo'] }}" required>
+
+                <label for="caracteristicas">Características</label>
+                <textarea id="caracteristicas" name="caracteristicas"
+                          required>{{ produto['caracteristicas'] }}</textarea>
+
+                <label for="preco">Preço (R$)</label>
+                <input type="number" id="preco" name="preco"
+                       step="0.01" min="0.01"
+                       value="{{ produto['preco'] }}" required>
+
+                <label for="disponibilidade">Disponibilidade</label>
+                <select id="disponibilidade" name="disponibilidade" required>
+                    <option value="Em estoque"
+                        {% if produto['disponibilidade'] == 'Em estoque' %}selected{% endif %}>
+                        Em estoque
+                    </option>
+                    <option value="Indisponível"
+                        {% if produto['disponibilidade'] == 'Indisponível' %}selected{% endif %}>
+                        Indisponível
+                    </option>
+                </select>
+
+                <button type="submit">Salvar alterações</button>
+
+            </form>
+
+            <a href="{{ url_for('consultar_produtos') }}">Voltar para produtos</a>
+        </div>
+
+    </main>
+
+    <footer>MM Informática © 2026</footer>
+
+</body>
+</html>

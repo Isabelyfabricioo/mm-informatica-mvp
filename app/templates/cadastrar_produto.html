@@ -1,0 +1,86 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="boas-vindas">
+    <h1>Cadastrar produtos</h1>
+    <p>Adicione novos produtos ao estoque da MM Informática.</p>
+</section>
+
+<div class="card-conteudo">
+    {% include "_mensagens.html" %}
+
+    <form method="POST" action="{{ url_for('cadastrar_produto') }}">
+
+        <label for="nome">Nome do produto</label>
+        <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Ex.: iPhone 15"
+            required
+        >
+
+        <label for="modelo">Modelo</label>
+        <input
+            type="text"
+            id="modelo"
+            name="modelo"
+            placeholder="Ex.: 128 GB - Preto"
+            required
+        >
+
+        <label for="caracteristicas">Características</label>
+        <textarea
+            id="caracteristicas"
+            name="caracteristicas"
+            rows="4"
+            placeholder="Ex.: Câmera de 48 MP, tela de 6,1 polegadas, bateria em ótimo estado."
+            required
+        ></textarea>
+
+        <label for="preco">Preço (R$)</label>
+        <input
+            type="text"
+            id="preco"
+            name="preco"
+            placeholder="Ex.: R$ 3.500,00"
+            inputmode="numeric"
+            required
+        >
+
+        <label for="disponibilidade">Disponibilidade</label>
+        <select id="disponibilidade" name="disponibilidade" required>
+            <option value="Em estoque">Em estoque</option>
+            <option value="Indisponível">Indisponível</option>
+        </select>
+
+        <button type="submit">Cadastrar produto</button>
+
+    </form>
+</div>
+
+<a class="link-voltar" href="{{ url_for('inicio') }}">← Voltar ao menu</a>
+
+<script>
+    const campoPreco = document.getElementById("preco");
+
+    campoPreco.addEventListener("input", function () {
+        let valor = this.value.replace(/\D/g, "");
+
+        if (valor === "") {
+            this.value = "";
+            return;
+        }
+
+        valor = (parseInt(valor, 10) / 100).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+
+        this.value = valor;
+    });
+</script>
+
+{% endblock %}

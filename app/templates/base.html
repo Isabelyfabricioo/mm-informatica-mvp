@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MM Informática</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="logo">
+            <span class="logo-icone">💻</span>
+            <span>MM Informática</span>
+        </div>
+
+        <nav class="navegacao">
+            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('consultar_produtos') }}">Produtos</a>
+            <a href="{{ url_for('negociacoes') }}">Negociações</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        <section class="boas-vindas">
+            <h1>Bem-vindo, Marcelo!</h1>
+            <p>Organize seus produtos e acompanhe suas negociações em um só lugar.</p>
+        </section>
+
+        <section class="opcoes">
+            <a href="{{ url_for('cadastrar_produto') }}" class="card">
+                <div class="icone">＋</div>
+                <h2>Cadastrar produtos</h2>
+                <p>Adicione novos produtos ao estoque.</p>
+                <span>Acessar →</span>
+            </a>
+
+            <a href="{{ url_for('consultar_produtos') }}" class="card">
+                <div class="icone">⌕</div>
+                <h2>Consultar produtos</h2>
+                <p>Consulte e edite os produtos cadastrados.</p>
+                <span>Acessar →</span>
+            </a>
+
+            <a href="{{ url_for('negociacoes') }}" class="card">
+                <div class="icone">↗</div>
+                <h2>Acompanhar negociações</h2>
+                <p>Visualize e atualize o andamento das negociações.</p>
+                <span>Acessar →</span>
+            </a>
+        </section>
+        {% endblock %}
+    </main>
+
+    <footer class="rodape">
+        <p>MM Informática © 2026 - Sistema de Organização Comercial</p>
+    </footer>
+
+</body>
+</html>

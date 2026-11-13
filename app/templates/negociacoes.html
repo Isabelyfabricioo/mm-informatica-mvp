@@ -1,0 +1,149 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="boas-vindas">
+    <h1>Acompanhar negociações</h1>
+    <p>Gerencie os interesses dos clientes e acompanhe o andamento das vendas.</p>
+</section>
+
+{% include "_mensagens.html" %}
+
+{% set total = negociacoes|length %}
+{% set novos = negociacoes|selectattr('status', 'equalto', 'Novo')|list|length %}
+{% set andamento = negociacoes|selectattr('status', 'equalto', 'Em negociação')|list|length %}
+{% set concluidos = negociacoes|selectattr('status', 'equalto', 'Concluído')|list|length %}
+
+<section class="indicadores">
+
+    <div class="indicador">
+        <span>Total de interesses</span>
+        <strong>{{ total }}</strong>
+    </div>
+
+    <div class="indicador">
+        <span>Novos</span>
+        <strong>{{ novos }}</strong>
+    </div>
+
+    <div class="indicador">
+        <span>Em negociação</span>
+        <strong>{{ andamento }}</strong>
+    </div>
+
+    <div class="indicador">
+        <span>Concluídos</span>
+        <strong>{{ concluidos }}</strong>
+    </div>
+
+</section>
+
+<section class="card-conteudo">
+
+    <h2>Cadastrar interesse de cliente</h2>
+    <p class="descricao-secao">Registre um cliente interessado em um produto.</p>
+
+    <form method="POST" action="{{ url_for('negociacoes') }}" class="form-negociacao">
+
+        <label for="cliente">Nome do cliente</label>
+        <input
+            type="text"
+            id="cliente"
+            name="cliente"
+            placeholder="Ex.: Marina Oliveira"
+            required
+        >
+
+        <label for="produto_id">Produto de interesse</label>
+        <select id="produto_id" name="produto_id" required>
+            <option value="">Selecione um produto</option>
+
+            {% for produto in produtos %}
+                <option value="{{ produto.id }}">
+                    {{ produto.nome }} - {{ produto.modelo }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="data">Data do interesse</label>
+        <input type="date" id="data" name="data" required>
+
+        <button type="submit">Cadastrar interesse</button>
+
+    </form>
+
+</section>
+
+<section class="lista-negociacoes">
+
+    <h2>Negociações cadastradas</h2>
+    <p class="descricao-secao">Acompanhe e atualize o status de cada negociação.</p>
+
+    {% if negociacoes %}
+
+    <div class="tabela-negociacoes">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Produto</th>
+                    <th>Data</th>
+                    <th>Status atual</th>
+                    <th>Atualizar status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for negociacao in negociacoes %}
+                <tr>
+                    <td><strong>{{ negociacao.cliente }}</strong></td>
+
+                    <td>
+                        {{ negociacao.produto }}
+                        <small class="modelo-produto">{{ negociacao.modelo }}</small>
+                    </td>
+
+                    <td>{{ negociacao.data }}</td>
+
+                    <td>
+                        <span class="status status-{{ negociacao.status|lower|replace(' ', '-') }}">
+                            {{ negociacao.status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <form
+                            class="form-status"
+                            method="POST"
+                            action="{{ url_for('alterar_status', negociacao_id=negociacao.id) }}"
+                        >
+                            <select name="status" required>
+                                <option value="Novo" {% if negociacao.status == "Novo" %}selected{% endif %}>Novo</option>
+                                <option value="Em negociação" {% if negociacao.status == "Em negociação" %}selected{% endif %}>Em negociação</option>
+                                <option value="Concluído" {% if negociacao.status == "Concluído" %}selected{% endif %}>Concluído</option>
+                                <option value="Cancelado" {% if negociacao.status == "Cancelado" %}selected{% endif %}>Cancelado</option>
+                            </select>
+
+                            <button type="submit">Salvar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% else %}
+
+    <div class="sem-resultados">
+        Nenhuma negociação cadastrada até o momento.
+    </div>
+
+    {% endif %}
+
+</section>
+
+<a class="link-voltar" href="{{ url_for('inicio') }}">← Voltar ao menu principal</a>
+
+{% endblock %}

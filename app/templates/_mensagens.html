@@ -1,0 +1,19 @@
+
+{% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% for categoria, mensagem in mensagens %}
+
+        <div class="alerta alerta-{{ categoria }}">
+
+            <span>{{ mensagem }}</span>
+
+            <button type="button"
+                    class="fechar-alerta"
+                    onclick="this.parentElement.remove()"
+                    aria-label="Fechar aviso">
+                &times;
+            </button>
+
+        </div>
+
+    {% endfor %}
+{% endwith %}
