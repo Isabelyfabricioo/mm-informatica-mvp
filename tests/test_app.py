@@ -68,3 +68,31 @@ def test_consultar_produtos(client):
 def test_acessar_negociacoes(client):
     resposta = client.get("/negociacoes")
     assert resposta.status_code == 200
+
+
+def test_acessar_edicao_produto(client):
+    cadastrar_produto(client)
+
+    produtos = database.listar_produtos(client.application)
+    produto_id = produtos[0]["id"]
+
+    resposta = client.get(f"/produtos/{produto_id}/editar")
+
+    assert resposta.status_code == 200
+
+
+def test_excluir_produto_sem_negociacoes(client):
+    cadastrar_produto(client)
+
+    produtos = database.listar_produtos(client.application)
+    produto_id = produtos[0]["id"]
+
+    resposta = client.post(
+        f"/produtos/{produto_id}/excluir",
+        follow_redirects=True
+    )
+
+    assert resposta.status_code == 200
+
+    produtos = database.listar_produtos(client.application)
+    assert len(produtos) == 0
