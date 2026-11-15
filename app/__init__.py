@@ -1,3 +1,4 @@
+import os
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 
@@ -16,7 +17,10 @@ from app.database import (
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = "chave-desenvolvimento-mm"
+    app.config["SECRET_KEY"] = os.environ.get(
+    "SECRET_KEY",
+    "chave-desenvolvimento-mm"
+)
 
     criar_tabela(app)
 
