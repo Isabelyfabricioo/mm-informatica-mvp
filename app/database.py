@@ -176,7 +176,9 @@ def atualizar_status_negociacao(app, negociacao_id, status):
 
 
 def excluir_produto(app, produto_id):
-    with sqlite3.connect(caminho_banco(app)) as conexao:
+    conexao = sqlite3.connect(caminho_banco(app))
+
+    try:
         cursor = conexao.cursor()
 
         cursor.execute(
@@ -194,4 +196,9 @@ def excluir_produto(app, produto_id):
             (produto_id,)
         )
 
+        conexao.commit()
+
         return cursor.rowcount > 0
+
+    finally:
+        conexao.close()

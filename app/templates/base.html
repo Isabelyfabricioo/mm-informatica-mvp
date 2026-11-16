@@ -1,62 +1,71 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MM Informática</title>
+    <title>MM InformÃ¡tica</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
     <header class="cabecalho">
         <div class="logo">
-            <span class="logo-icone">💻</span>
-            <span>MM Informática</span>
+            <span class="logo-icone">ðŸ’»</span>
+            <span>MM InformÃ¡tica</span>
         </div>
 
         <nav class="navegacao">
-            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('inicio') }}">InÃ­cio</a>
             <a href="{{ url_for('consultar_produtos') }}">Produtos</a>
-            <a href="{{ url_for('negociacoes') }}">Negociações</a>
+            <a href="{{ url_for('negociacoes') }}">NegociaÃ§Ãµes</a>
         </nav>
+        <button
+    type="button"
+    class="botao-acessibilidade"
+    id="alternar-contraste"
+    aria-pressed="false"
+>
+    Alto contraste: desligado
+</button>
     </header>
 
     <main class="container">
         {% block content %}
         <section class="boas-vindas">
             <h1>Bem-vindo, Marcelo!</h1>
-            <p>Organize seus produtos e acompanhe suas negociações em um só lugar.</p>
+            <p>Organize seus produtos e acompanhe suas negociaÃ§Ãµes em um sÃ³ lugar.</p>
         </section>
 
         <section class="opcoes">
             <a href="{{ url_for('cadastrar_produto') }}" class="card">
-                <div class="icone">＋</div>
+                <div class="icone">ï¼‹</div>
                 <h2>Cadastrar produtos</h2>
                 <p>Adicione novos produtos ao estoque.</p>
-                <span>Acessar →</span>
+                <span>Acessar â†’</span>
             </a>
 
             <a href="{{ url_for('consultar_produtos') }}" class="card">
-                <div class="icone">⌕</div>
+                <div class="icone">âŒ•</div>
                 <h2>Consultar produtos</h2>
                 <p>Consulte e edite os produtos cadastrados.</p>
-                <span>Acessar →</span>
+                <span>Acessar â†’</span>
             </a>
 
             <a href="{{ url_for('negociacoes') }}" class="card">
-                <div class="icone">↗</div>
-                <h2>Acompanhar negociações</h2>
-                <p>Visualize e atualize o andamento das negociações.</p>
-                <span>Acessar →</span>
+                <div class="icone">â†—</div>
+                <h2>Acompanhar negociaÃ§Ãµes</h2>
+                <p>Visualize e atualize o andamento das negociaÃ§Ãµes.</p>
+                <span>Acessar â†’</span>
             </a>
         </section>
         {% endblock %}
     </main>
 
     <footer class="rodape">
-        <p>MM Informática © 2026 - Sistema de Organização Comercial</p>
+        <p>MM InformÃ¡tica Â© 2026 - Sistema de OrganizaÃ§Ã£o Comercial</p>
     </footer>
 
+    <script src="{{ url_for('static', filename='js/acessibilidade.js') }}" defer></script>
 </body>
 </html>
