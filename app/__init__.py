@@ -1,3 +1,4 @@
+
 import os
 
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -11,16 +12,17 @@ from app.database import (
     inserir_negociacao,
     listar_negociacoes,
     atualizar_status_negociacao,
-    excluir_produto
+    excluir_produto,
+    excluir_negociacao
 )
 
 
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.environ.get(
-    "SECRET_KEY",
-    "chave-desenvolvimento-mm"
-)
+        "SECRET_KEY",
+        "chave-desenvolvimento-mm"
+    )
 
     criar_tabela(app)
 
@@ -202,6 +204,22 @@ def create_app():
         atualizar_status_negociacao(app, negociacao_id, status)
         flash("Status atualizado com sucesso!", "success")
 
+        return redirect(url_for("negociacoes"))
+
+    # EXCLUIR NEGOCIAÇÃO
+    @app.route("/negociacoes/<int:negociacao_id>/excluir", methods=["POST"])
+    def excluir_negociacao_rota(negociacao_id):
+        excluida = excluir_negociacao(app, negociacao_id)
+
+        if not excluida:
+            flash(
+                "Esta negociação não pode ser excluída. "
+                "Somente negociações com status Novo ou Cancelado podem ser excluídas.",
+                "error"
+            )
+            return redirect(url_for("negociacoes"))
+
+        flash("Negociação excluída com sucesso!", "success")
         return redirect(url_for("negociacoes"))
 
     # EXCLUIR PRODUTO

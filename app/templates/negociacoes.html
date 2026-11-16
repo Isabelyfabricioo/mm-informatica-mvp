@@ -91,6 +91,7 @@
                     <th>Data</th>
                     <th>Status atual</th>
                     <th>Atualizar status</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
@@ -128,6 +129,22 @@
                             <button type="submit">Salvar</button>
                         </form>
                     </td>
+
+                    <td>
+                        {% if negociacao.status in ["Novo", "Cancelado"] %}
+                            <form
+                                method="POST"
+                                action="{{ url_for('excluir_negociacao_rota', negociacao_id=negociacao.id) }}"
+                                onsubmit="return confirm('Tem certeza de que deseja excluir esta negociação?');"
+                            >
+                                <button type="submit" class="botao-excluir botao-excluir-negociacao">
+                                    Excluir
+                                </button>
+                            </form>
+                        {% else %}
+                            <span>—</span>
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -144,6 +161,6 @@
 
 </section>
 
-<a class="link-voltar" href="{{ url_for('inicio') }}">← Voltar ao menu principal</a>
+<a class="link-voltar" href="{{ url_for('inicio') }}">← Voltar ao início</a>
 
 {% endblock %}

@@ -175,6 +175,7 @@ def atualizar_status_negociacao(app, negociacao_id, status):
     conexao.close()
 
 
+# Excluir um produto somente quando não houver negociações vinculadas
 def excluir_produto(app, produto_id):
     conexao = sqlite3.connect(caminho_banco(app))
 
@@ -195,6 +196,40 @@ def excluir_produto(app, produto_id):
             "DELETE FROM produtos WHERE id = ?",
             (produto_id,)
         )
+
+        conexao.commit()
+
+        return cursor.rowcount > 0
+
+    finally:
+        conexao.close()
+
+
+# Excluir negociação somente se estiver como Novo ou Cancelado
+def excluir_negociacao(app, negociacao_id):
+    conexao = sqlite3.connect(caminho_banco(app))
+
+    try:
+        cursor = conexao.cursor()
+
+        cursor.execute("""
+            SELECT status
+            FROM negociacoes
+            WHERE id = ?
+        """, (negociacao_id,))
+
+        negociacao = cursor.fetchone()
+
+        if negociacao is None:
+            return False
+
+        if negociacao[0] not in ("Novo", "Cancelado"):
+            return False
+
+        cursor.execute("""
+            DELETE FROM negociacoes
+            WHERE id = ?
+        """, (negociacao_id,))
 
         conexao.commit()
 
