@@ -600,3 +600,109 @@ a {
 .acoes-produto form button {
     height: 100%;
 }
+
+
+/* ACESSIBILIDADE */
+
+/* Botão de alto contraste */
+.botao-acessibilidade {
+    background: #ffffff;
+    color: #142b49;
+    border: 2px solid #ffffff;
+    min-height: 44px;
+    padding: 10px 14px;
+}
+
+.botao-acessibilidade:hover {
+    background: #dce8f5;
+    color: #142b49;
+}
+
+/* Destaque para navegação pelo teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #f0a500;
+    outline-offset: 3px;
+}
+
+/* Modo de alto contraste */
+body.alto-contraste {
+    background: #000000;
+    color: #ffffff;
+}
+
+body.alto-contraste .cabecalho,
+body.alto-contraste .rodape {
+    background: #000000;
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+body.alto-contraste .container,
+body.alto-contraste .card,
+body.alto-contraste .card-conteudo,
+body.alto-contraste .produto-item,
+body.alto-contraste .indicador,
+body.alto-contraste .tabela-negociacoes,
+body.alto-contraste .sem-resultados,
+body.alto-contraste table {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste p,
+body.alto-contraste label,
+body.alto-contraste span,
+body.alto-contraste td,
+body.alto-contraste th,
+body.alto-contraste .descricao-secao,
+body.alto-contraste .modelo-produto {
+    color: #ffffff;
+}
+
+body.alto-contraste a {
+    color: #ffff00;
+}
+
+body.alto-contraste button,
+body.alto-contraste .botao-editar {
+    background: #ffff00;
+    color: #000000;
+    border: 2px solid #ffff00;
+}
+
+body.alto-contraste input,
+body.alto-contraste select,
+body.alto-contraste textarea {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+body.alto-contraste input::placeholder,
+body.alto-contraste textarea::placeholder {
+    color: #dddddd;
+}
+
+body.alto-contraste th {
+    background: #222222;
+}
+
+body.alto-contraste .status {
+    background: #000000;
+    color: #ffff00;
+    border: 1px solid #ffff00;
+}
+
+body.alto-contraste .botao-acessibilidade {
+    background: #ffff00;
+    color: #000000;
+    border-color: #ffff00;
+}
