@@ -706,3 +706,11 @@ body.alto-contraste .botao-acessibilidade {
     color: #000000;
     border-color: #ffff00;
 }
+
+/* Botão de excluir negociação - versão compacta */
+.botao-excluir-negociacao {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+}
